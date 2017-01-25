@@ -30,7 +30,7 @@ public class MagicalString
     if(n <=0 ) return 0;
     int[] result = new int[n];
     int index1 = 0,index2=0; // two index, index1 is the generating one. index2 is the result one.
-    int count = 1; // count how many '1's we have
+    int count = 0; // count how many '1's we have
     int[] num = new int[]{1,2}; // 0 -> 1; 1 -> 2;
     int rotate = 0; // flip within num[]
     
@@ -40,26 +40,16 @@ public class MagicalString
         result[index1] = cur;
       }
       rotate = (rotate+1)%2;
-      int range = Math.min(index2 + result[index1], n-1);
+      int range = Math.min(index2 + result[index1] -1, n-1); //last element index
       if(cur == 1){
-        count+= range-index2;
+        count+= range-index2+1; // last - first + 1;
       }
-      for(int i = index2+1; i <= range;i++){
+      for(int i = index2; i <= range;i++){
         result[i]=cur;
       }
       index1++;
-      index2+=range;
-    }while(index2 <= n-1);
+      index2=range + 1;
+    }while(index2 < n  );
     return count;
-  }
-  
-  public static void main(String[] args){
-    MagicalString s = new MagicalString();
-    System.out.println( s.magicalString( -1 ) );
-    System.out.println( s.magicalString( 0 ) );
-    System.out.println( s.magicalString( 2 ) );
-    System.out.println( s.magicalString( 6 ) );
-    System.out.println( s.magicalString( 8 ) );
-    System.out.println( s.magicalString( 10 ) );
   }
 }

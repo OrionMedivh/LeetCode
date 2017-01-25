@@ -80,10 +80,19 @@ public class Main {
 		// System.out.println(s.findMinHeightTrees(4, new int[][] { { 1, 0 },
 		// { 1, 2 }, { 1, 3 } }));
 
-		NextPermutation s = new NextPermutation();
-		// int[] nums= new int[]{5,1,4,3,2};
-		int[] nums = new int[] { 1, 1 };
-		s.nextPermutation(nums);
-		System.out.println(Arrays.toString(nums));
+//		NextPermutation s = new NextPermutation();
+//		// int[] nums= new int[]{5,1,4,3,2};
+//		int[] nums = new int[] { 1, 1 };
+//		s.nextPermutation(nums);
+//		System.out.println(Arrays.toString(nums));
+	  
+	    MagicalString s = new MagicalString();
+//	    System.out.println( s.magicalString( -1 ) );
+//	    System.out.println( s.magicalString( 0 ) );
+//	    System.out.println( s.magicalString( 1 ) );
+//	    System.out.println( s.magicalString( 2 ) );
+//	    System.out.println( s.magicalString( 6 ) );
+//	    System.out.println( s.magicalString( 8 ) );
+	    System.out.println( s.magicalString( 10 ) );
 	}
 }
