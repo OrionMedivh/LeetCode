@@ -29,8 +29,18 @@ public class LongestAbsoluteFilePath {
 //        return max;
 //    } //wrong, bad implementation.
     
-    public int lengthLongestPath(String input) {
-    	return 0;
+	public int lengthLongestPath(String input) {
+		String[] array = input.split("\n");
+		int[] level = new int[array.length+1]; // to save current starting position for each level
+		int max=0;
+		for(String s:array){
+			int curLevel = s.lastIndexOf('\t')+1; // how many '\t', means which level as well.
+			int curLength = level[curLevel+1] = level[curLevel] + s.length() - curLevel + 1; //replace all '\t', add one '/'
+			if(s.contains(".")){
+				max = Math.max(max, curLength-1); // remove end '/';
+			}
+		}
+        return max;
     }
     
 	public static void main(String[] args) {
