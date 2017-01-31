@@ -22,6 +22,8 @@ public class PartitionEqualSubsetSum {
     	dp[0] = true; // 0 is always true
     	for(int i=1; i <= nums.length; i++){
     		for( int j = target; j>= nums[i-1]; j-- ){
+    		  //it's a compress of 2d array from subsetMatching1, 
+    		  //needs from higher index to lower is to avoid previous modification
     			int k = nums[i-1];
     			dp[j] = dp[j] || dp[j-k];
     		}
