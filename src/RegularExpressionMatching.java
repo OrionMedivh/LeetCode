@@ -14,4 +14,9 @@ public class RegularExpressionMatching {
 			}
 		return dp[s.length()][p.length()];
 	}
+	
+	public static void main(String[] args){
+		RegularExpressionMatching s = new RegularExpressionMatching();
+		System.out.println(s.isMatch("aab", "c*a*b"));
+	}
 }
