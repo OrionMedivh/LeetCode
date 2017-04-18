@@ -39,28 +39,10 @@ public class MinQueue {
 	public int getMin(){
 		return minQueue.peek();
 	}
-	
-	public static void main(String[] args){
-		MinQueue mq = new MinQueue();
-		mq.offer(5);
-		mq.offer(4);
-		mq.offer(1);
-		mq.offer(3);
-		mq.offer(2);
-		System.out.println(mq.getMin());
-		System.out.println(mq.top());
-		mq.poll();
-		System.out.println(mq.getMin());
-		System.out.println(mq.top());
-		mq.poll();
-		System.out.println(mq.getMin());
-		System.out.println(mq.top());
-		mq.poll();
-		System.out.println(mq.getMin());
-		System.out.println(mq.top());
-		mq.poll();
-		System.out.println(mq.getMin());
-		System.out.println(mq.top());
-		System.out.println(mq.toString());
-	}
+	//5,4,1,3,2
+	//5
+	//(5),4
+	//(5),(4),1
+	//(5),(4),1,3
+	//(5),(4),1,(3),2
 }
