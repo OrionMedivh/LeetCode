@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class AlianDictionary {
+public class AlienDictionary {
     public String alienOrder(String[] words) {
         HashMap<Character, HashSet<Character>> map = new HashMap<>();
         HashMap<Character, Integer> degree = new HashMap<>(); //topological level, how many parent
@@ -57,7 +57,7 @@ public class AlianDictionary {
     }
     
     public static void main(String[] args){
-    	AlianDictionary s = new AlianDictionary();
+    	AlienDictionary s = new AlienDictionary();
     	System.out.println("1: "+s.alienOrder(new String[]{"srtkj","srt"}));
     	System.out.println("2: "+s.alienOrder(new String[]{"xy","xz"}));
     }
