@@ -17,23 +17,25 @@ public class KthSmallestElementInBST {
 	// if (s.size() == k) return;
 	// }
 
-	public static int number;
-	public static int n;
+	private int count;
+	private int result;
 
 	public int kthSmallest(TreeNode root, int k) {
-		n = k;
-		InorderTraversal(root);
-		return number;
+		count = k;
+		inorderTraversal(root);
+		return result;
 	}
 
-	public void InorderTraversal(TreeNode node) {
-		if (node == null)
-			return;
-		InorderTraversal(node.left);
-		if (--n == 0) {
-			number = node.val;
+	private void inorderTraversal(TreeNode node) {
+		if (node == null) {
 			return;
 		}
-		InorderTraversal(node.right);
+		inorderTraversal(node.left);
+		count--;
+		if (count == 0) {
+			result = node.val;
+			return;
+		}
+		inorderTraversal(node.right);
 	}
 }

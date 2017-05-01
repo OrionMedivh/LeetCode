@@ -31,26 +31,26 @@ public class BinaryTreePaths {
 	// }
 
 	public List<String> binaryTreePaths(TreeNode root) {
-		List list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		if (root != null) {
 			StringBuffer sb = new StringBuffer();
-			binaryTreePath(root, list, sb);
+			binaryTreePaths(root, list, sb);
 		}
 		return list;
 	}
 
-	public void binaryTreePath(TreeNode Node, List<String> list, StringBuffer sb) {
-		if (Node.left == null && Node.right == null) {
-			sb.append(Node.val);
+	private void binaryTreePaths(TreeNode node, List<String> list, StringBuffer sb) {
+		if (node.left == null && node.right == null) {
+			sb.append(node.val);
 			list.add(sb.toString());
 			return;
 		}
-		sb.append(Node.val + "->");
-		if (Node.left != null) {
-			binaryTreePath(Node.left, list, new StringBuffer(sb));
+		sb.append(node.val + "->");
+		if (node.left != null) {
+			binaryTreePaths(node.left, list, new StringBuffer(sb));
 		}
-		if (Node.right != null) {
-			binaryTreePath(Node.right, list, new StringBuffer(sb));
+		if (node.right != null) {
+			binaryTreePaths(node.right, list, new StringBuffer(sb));
 		}
 	} // actually slower
 }
