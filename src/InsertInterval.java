@@ -41,7 +41,22 @@ public class InsertInterval {
 			intervals.remove(i);
 		}
 
-		intervals.add(newInterval);
+		intervals.add(i, newInterval);
+		return intervals;
+	}
+
+	public List<Interval> insert2(List<Interval> intervals, Interval newInterval) {
+		int i = 0;
+		while (i < intervals.size() && newInterval.start > intervals.get(i).end) {
+			i++;
+		}
+		while (i < intervals.size() && newInterval.end >= intervals.get(i).start) {
+			newInterval.start = Math.min(intervals.get(i).start, newInterval.start);
+			newInterval.end = Math.max(intervals.get(i).end, newInterval.end);
+			intervals.remove(i);
+		}
+
+		intervals.add(i, newInterval);
 		return intervals;
 	}
 }

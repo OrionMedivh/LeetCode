@@ -45,4 +45,25 @@ public class MergeIntervals {
 		result.add(new Interval(start, end));
 		return result;
 	}
+
+	public List<Interval> merge2(List<Interval> intervals) {
+		List<Interval> result = new ArrayList<Interval>();
+		if (intervals == null || intervals.isEmpty()) {
+			return intervals;
+		}
+		Collections.sort(intervals, (x, y) -> ((x.start - y.start) != 0 ? x.start - y.start : x.end - y.end));
+		int start = intervals.get(0).start;
+		int end = intervals.get(0).end;
+		for (Interval interval : intervals) {
+			if (interval.start <= end) {
+				end = Math.max(end, interval.end);
+			} else {
+				result.add(new Interval(start, end));
+				start = interval.start;
+				end = interval.end;
+			}
+		}
+		result.add(new Interval(start, end));
+		return result;
+	}
 }
