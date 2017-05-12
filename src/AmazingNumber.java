@@ -13,5 +13,21 @@
  */
 
 public class AmazingNumber {
-
+	public int amazingNumber(int[] nums) {
+		int res = 0;
+		int max = 0;
+		for (int i = 0; i < nums.length; i++) { // how much to shift the indices
+			int count = 0;
+			for (int j = 0; j < nums.length; j++) {
+				if (j - nums[(i + j) % nums.length] >= 0) {
+					count++;
+				}
+			}
+			if (count > max) {
+				max = count;
+				res = i;
+			}
+		}
+		return res;
+	}
 }
