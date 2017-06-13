@@ -1,22 +1,27 @@
 
+/*
+Write a function to delete a node (except the tail) in a 
+singly linked list, given only access to that node.
+Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are 
+given the third node with value 3, the linked list should 
+become 1 -> 2 -> 4 after calling your function.
+ */
+
 public class DeleteNode {
-	public static void deleteNode(ListNode node) {
-		// node.val=node.next.val;
-		// node.next = node.next.next;
-		node = node.next;// wrong
+	public void deleteNode(ListNode node) {
+		node.val = node.next.val;
+		node.next = node.next.next;
 	}
+	// copy value from next node, and then delete it.
 
-	public static void main(String[] args) {
-		ListNode zero = new ListNode(0);
-		ListNode one = new ListNode(1);
-		ListNode two = new ListNode(2);
-		zero.next = one;
-		one.next = two;
-		deleteNode(zero);
-		System.out.println(zero.next.next.val);
-
-		// lesson: java is always pass by value. even "reference" is a pointer,
-		// which is a value.
-		// so we can say pass by pointer.
-	}
+	// public void deleteNode(ListNode node) {
+	// ListNode prev = null;
+	// while (node.next != null) {
+	// node.val = node.next.val;
+	// prev = node;
+	// node = node.next;
+	// }
+	// prev.next = null;
+	// }
+	// //Shift all nodes to left. not needed.
 }

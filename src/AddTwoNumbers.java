@@ -8,25 +8,28 @@ Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 0 -> 8
  */
 
+/*
+ * The rule is 2 + 5 = 7, 4 + 6 = 0 + 1(carry), 3 + 4 + 1(carry) = 8;
+ * Only need to pay attention to the case that end with a carry.
+ */
+
 public class AddTwoNumbers {
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-		ListNode head = new ListNode(0);
-		ListNode curr = head;
+		ListNode head = new ListNode(0); // a placeholder for retrieving list
+		ListNode curr = head; // current ListNode
 		int carry = 0;
 		while (l1 != null || l2 != null) {
-			if (l1 == null) {
-				l1 = l2;
-				l2 = null;
+			if (l1 != null) {
+				carry += l1.val;
+				l1 = l1.next;
 			}
-			carry += l1.val;
-			l1 = l1.next;
 			if (l2 != null) {
 				carry += l2.val;
 				l2 = l2.next;
 			}
 			curr.next = new ListNode(carry % 10);
-			carry /= 10;
 			curr = curr.next;
+			carry /= 10;
 		}
 		if (carry != 0) {
 			curr.next = new ListNode(1);
