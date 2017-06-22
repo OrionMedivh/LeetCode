@@ -6,22 +6,24 @@ public class AscendingOrDescending {
 		if (nums == null || nums.length < 2) {
 			return true;
 		}
-		if (nums[0] < nums[nums.length - 1]) {
+		if (nums[0] > nums[nums.length - 1]) {
+			// check if it's descending monotonous
 			for (int i = 1; i < nums.length; i++) {
 				if (nums[i] >= nums[i - 1]) {
 					return false;
 				}
 			}
 			return true;
-		}
-		if (nums[0] < nums[nums.length - 1]) {
+		} else if (nums[0] < nums[nums.length - 1]) {
+			// check if it's ascending monotonous
 			for (int i = 1; i < nums.length; i++) {
 				if (nums[i] <= nums[i - 1]) {
 					return false;
 				}
 			}
 			return true;
+		} else {
+			return false; // nums[0] == nums[nums.length-1];
 		}
-		return false; // nums[0] == nums[nums.length-1];
 	}
 }

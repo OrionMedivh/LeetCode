@@ -1,4 +1,11 @@
 
+/*
+A linked list is given such that each node contains an additional 
+random pointer which could point to any node in the list or null.
+
+Return a deep copy of the list.
+ */
+
 class RandomListNode {
 	int label;
 	RandomListNode next, random;
@@ -14,34 +21,34 @@ public class CopyListWithRandomPointer {
 			return null;
 		}
 
-		RandomListNode p = head;// pointer
-
-		// copy every node and insert to list
+		// copy every node and insert into list
 		// from a->b to a->a'->b
+		RandomListNode p = head;
 		while (p != null) {
-			RandomListNode copy = new RandomListNode(p.label);
-			copy.next = p.next;
-			p.next = copy;
-			p = copy.next;
+			RandomListNode newNode = new RandomListNode(p.label);
+			newNode.next = p.next;
+			p.next = newNode;
+			p = newNode.next;
 		}
 
 		// copy random pointer for each new node
 		p = head;
 		while (p != null) {
 			if (p.random != null) {
-				p.next.random = p.random.next; // !!!
+				// copy's random = original's random's copy
+				p.next.random = p.random.next;
 			}
 			p = p.next.next;
 		}
 
-		// break list to two
+		// break the list into two
 		p = head;
 		RandomListNode newHead = head.next;
 		while (p != null) {
-			RandomListNode temp = p.next;
-			p.next = temp.next;
-			if (temp.next != null) {
-				temp.next = temp.next.next;
+			RandomListNode q = p.next;
+			p.next = q.next;
+			if (q.next != null) {
+				q.next = q.next.next;
 			}
 			p = p.next;
 		}
