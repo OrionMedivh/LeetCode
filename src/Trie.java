@@ -3,11 +3,6 @@ class TrieNode {
 	TrieNode[] children;
 	boolean isWord;
 
-	public TrieNode() {
-		children = new TrieNode[26];
-		isWord = false;
-	}
-
 	public TrieNode(char c) {
 		this.c = c;
 		children = new TrieNode[26];
@@ -21,7 +16,7 @@ public class Trie {
 
 	/** Initialize your data structure here. */
 	public Trie() {
-		root = new TrieNode();
+		root = new TrieNode(' ');
 	}
 
 	/** Inserts a word into the trie. */

@@ -1,11 +1,14 @@
 
-  class Point {
-     int x;
-     int y;
-     Point() { x = 0; y = 0; }
-     Point(int a, int b) { x = a; y = b; }
- }
-   
+/**
+ * Definition for a point.
+ * class Point {
+ *     int x;
+ *     int y;
+ *     Point() { x = 0; y = 0; }
+ *     Point(int a, int b) { x = a; y = b; }
+ * }
+ */
+
 public class MaxPoints {
 	double epsilon=0.0001;
     public int maxPoints(Point[] points) {

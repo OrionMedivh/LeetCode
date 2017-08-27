@@ -44,5 +44,7 @@ public class IntegerToEnglishWords {
 			sb.append(numberToWordsHelper(num % 100));
 		}
 		return sb;
-	}
+	} // don't like this answer, maybe rewrite in seperate function like
+		// resolveLessThanTwenty, resolveLessThanHundred,
+		// resolveLessThanThousand
 }
