@@ -35,53 +35,63 @@ import java.util.Map;
  * So we can use y0&x0 to track a line;
  */
 
-public class MaxPointsOnALine {
+/**
+ * 
+ * This solution is flawed, due to the division 
+ * and accuracy of double.
+ * But Linkedin likes this answer more.
+ *
+ */
+
+public class MaxPointsOnALineAlternative {
 	public int maxPoints(Point[] points) {
-		if (points == null)
+		if (points == null) {
 			return 0;
-		if (points.length <= 2)
+		}
+		if (points.length <= 2) {
 			return points.length;
+		}
 
 		int result = 0;
 		for (int i = 0; i < points.length; i++) {
-			Map<Integer, Map<Integer, Integer>> map = new HashMap<>();
-			int overlap = 0, max = 0;
+			Map<Double, Integer> map = new HashMap<>();
+			int overlap = 0, samex = 0, localMax = 0;
 			for (int j = i + 1; j < points.length; j++) {
+				// no need to start with 0, since
+				// it's guaranteed to find the global max.
 				int x = points[j].x - points[i].x;
 				int y = points[j].y - points[i].y;
 				if (x == 0 && y == 0) {
 					overlap++;
 					continue;
 				}
-				// try to get minimum x0, y0;
-				int gcd = generateGCD(x, y);
-				if (gcd != 0) {
-					x /= gcd;
-					y /= gcd;
+				if (x == 0) {
+					samex++;
+					continue;
 				}
-				if (map.containsKey(x)) {
-					if (map.get(x).containsKey(y)) {
-						map.get(x).put(y, map.get(x).get(y) + 1);
-					} else {
-						map.get(x).put(y, 1);
-					}
+				double k;
+				if (y == 0) {
+					k = 0.0;
 				} else {
-					Map<Integer, Integer> m = new HashMap<>();
-					m.put(y, 1);
-					map.put(x, m);
+					k = (double) y / (double) x;
 				}
-				// local max of each i.
-				max = Math.max(max, map.get(x).get(y));
+				if (map.containsKey(k)) {
+					map.put(k, map.get(k) + 1);
+				} else {
+					map.put(k, 1);
+				}
+				localMax = Math.max(localMax, map.get(k));
 			}
-			// global max
-			result = Math.max(result, max + overlap + 1);
+			result = Math.max(result, Math.max(localMax, samex) + overlap + 1);
 		}
 		return result;
 	}
-
-	private int generateGCD(int a, int b) {
-		if (b == 0)
-			return a;
-		return generateGCD(b, a % b);
+	
+	public static void main(String[] args){
+		MaxPointsOnALineAlternative s = new MaxPointsOnALineAlternative();
+		Point a = new Point(2,3);
+		Point b = new Point(3,3);
+		Point c = new Point(-5,3);
+		System.out.println(s.maxPoints(new Point[]{a,b,c}));
 	}
 }
