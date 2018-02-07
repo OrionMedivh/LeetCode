@@ -68,8 +68,10 @@ class MinStack2 {
 	}
 
 	public void pop() {
-		minStack.pop();
-		stack.pop();
+		if (!minStack.empty()) {
+			minStack.pop();
+			stack.pop();
+		}
 	}
 
 	public int top() {
