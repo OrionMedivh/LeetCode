@@ -17,7 +17,7 @@ public class SearchInsersionPosition {
     
     public int searchInsert(int[] A, int begin, int end, int target){
     while (begin!=end){ 
-    int middle=(begin+end)/2;
+    int middle= begin + ( end - begin )/2;
     if (target==A[middle]) return middle;
     if (target>A[middle]) begin=middle+1;
     if (target<A[middle]) end=middle;
