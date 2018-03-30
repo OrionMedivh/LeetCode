@@ -1,3 +1,19 @@
+
+/*
+Given a collection of distinct numbers, return all possible permutations.
+
+For example,
+[1,2,3] have the following permutations:
+[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +96,9 @@ public class Permutation {
 		} else {
 			for (int i = pos; i < nums.length; i++) {
 				swap(nums, i, pos);
-				permute(nums, pos + 1, list);
+				permute(nums, pos + 1, list); 
+				// from pos + 1, because permutation is n * n-1 * n-2 * ...
+				// a.k.a n!. 
 				swap(nums, i, pos);
 			}
 		}
