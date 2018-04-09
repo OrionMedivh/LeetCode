@@ -14,13 +14,18 @@ return [0, 1].
 
 public class TwoSum {
 	public int[] twoSum(int[] nums, int target) {
+		// create a map of value -> index
 		HashMap<Integer, Integer> map = new HashMap<>();
 		for (int i = 0; i < nums.length; i++) {
+			// in each step check if already exists a value + current number = target
 			if (map.containsKey(target - nums[i])) {
+				// if so, return a new pair[index of the value, current index]
 				return new int[] { map.get(target - nums[i]), i };
 			}
+			// otherwise, put current value into the map
 			map.put(nums[i], i);
 		}
+		// if not found, return [-1,-1]
 		return new int[] { -1, -1 };
 	}
 }
