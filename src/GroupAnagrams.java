@@ -24,10 +24,14 @@ public class GroupAnagrams {
 
 	private void sort(char[] chars) {
 		int[] buckets = new int[26];
+		// create a character -> occurence map
+		// aab -> a[2]b[1]
 		for (char ch : chars) {
 			buckets[ch - 'a']++;
 		}
 		int index = 0;
+		// create chars from occurence map
+		// d[3]f[4] -> dddffff
 		for (int i = 0; i < buckets.length; i++) {
 			while (buckets[i] > 0) {
 				chars[index] = (char) (i + 'a');
