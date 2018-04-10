@@ -48,23 +48,29 @@ All characters have an ASCII value in [35, 126].
 
 public class StringCompression {
 	public int compress(char[] chars) {
-		int readIndex = 0, writeIndex = 0, anchorIndex = 0; 
-		// index of read, write, and the location of first character of the last bunch of same characters
-		for (readIndex = 0; readIndex < chars.length; readIndex++) {
-			if (readIndex != chars.length - 1 && chars[readIndex] == chars[readIndex + 1]) {
-			} else {
-				chars[writeIndex++] = chars[anchorIndex];
-				if (readIndex > anchorIndex) { // more than 1 character
-					for (char c1 : Integer.toString(readIndex - anchorIndex + 1).toCharArray()) {
-						chars[writeIndex++] = c1;
+		int read = 0, write = 0, anchor = 0;
+		// index of read, write, and the location of first character of the last
+		// repeating characters
+		for (read = 0; read < chars.length; read++) {
+			// if read index hits the end of chars array
+			// or the char is different than next one
+			if (read == chars.length - 1 || chars[read] != chars[read + 1]) {
+				// write the character
+				chars[write++] = chars[anchor];
+				// if more than 1 repeating characters
+				if (read > anchor) {
+					// write the number
+					for (char c1 : Integer.toString(read - anchor + 1).toCharArray()) {
+						chars[write++] = c1;
 					}
 				}
-				anchorIndex = readIndex + 1;
+				// move anchor to next char
+				anchor = read + 1;
 			}
 		}
-		return writeIndex;
+		return write;
 	}
-	
+
 	public int compress2(char[] chars) {
 		int readIndex = 0, writeIndex = 0;
 		char c = chars[0];

@@ -21,16 +21,17 @@ public class ReverseLinkedList {
 	}
 
 	public ListNode reverseListIterative(ListNode head) {
-		ListNode p0 = null, p1 = head;
+		ListNode p0 = null, p1 = head, p2;
 		while (p1 != null) {
 			// get next node
-			ListNode p2 = p1.next;
+			p2 = p1.next;
 			// reversely connect the pair
 			p1.next = p0;
 			// move to next pair
 			p0 = p1;
 			p1 = p2;
 		}
+		// p1 is null, p0 is the previous not null node
 		return p0;
 	}
 
@@ -39,6 +40,8 @@ public class ReverseLinkedList {
 	}
 
 	private ListNode reverseListRecursive(ListNode node1, ListNode node2) {
+		// base case first.
+		// if node2 is null, return previous node
 		if (node2 == null) {
 			return node1;
 		}
